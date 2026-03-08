@@ -14,7 +14,9 @@ Download File WiFi-Switcher-v1.0.ps1
 
 Create a Shortcut with the following Command
 
-powershell.exe -ExecutionPolicy Bypass -File "C:\Path\To\WiFi-Switcher.ps1
+```
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File "C:\PATH\TO\FILE\WiFi-Switcher v1.0.ps1"
+```
 
 - Start Minimized
 After Making shortcut
