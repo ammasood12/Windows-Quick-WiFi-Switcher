@@ -112,6 +112,7 @@ function Attempt-Connection {
     do {
         $script:retryCount++
         $label.Text = "Connecting to: $nextWifi`nAttempt #$retryCount"
+        $label.ForeColor = [System.Drawing.Color]::Black
         $form.Refresh()
 
         netsh wlan disconnect | Out-Null
@@ -122,7 +123,8 @@ function Attempt-Connection {
         $connectedWifi = Get-ConnectedSSID
 
         if ($connectedWifi -eq $nextWifi) {
-            $label.Text = "✅ Connected to: $nextWifi"
+            $label.Text = "[OK] Connected to: $nextWifi"
+            $label.ForeColor = [System.Drawing.Color]::Green
             $labelCurrent.Text = "Current WiFi: $connectedWifi"
             $buttonRetry.Enabled = $false
             $form.Refresh()
@@ -130,7 +132,8 @@ function Attempt-Connection {
             $form.Close()
             return
         } else {
-            $label.Text = "❌ Failed to connect to: $nextWifi`nAttempt #$retryCount of $retryLimit"
+            $label.Text = "[FAIL] Failed to connect to: $nextWifi`nAttempt #$retryCount of $retryLimit"
+            $label.ForeColor = [System.Drawing.Color]::Red
             $labelCurrent.Text = "Current WiFi: $connectedWifi"
             $form.Refresh()
             if ($retryCount -ge $retryLimit) {
